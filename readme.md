@@ -7,8 +7,8 @@
 Pour ce cours, dans le dossier `php_mysql` on trouve
 
 - le [support de cours](./php_mysql/cours/index.html)
-- un fichier `Dockerfile` pour démarrer rapidement un *serveur PHP* 
-- un fichier `docker-compose.yml` avec le *serveur PHP*, un *serveur MySQL* et *Adminer*
+- un fichier [Dockerfile](./php_mysql/Dockerfile) pour démarrer rapidement un *serveur PHP* 
+- un fichier [docker-compose.yml](./php_mysql/docker-compose.yml) avec le *serveur PHP*, un *serveur MySQL* et *Adminer*
 
 ## Symfony
 
