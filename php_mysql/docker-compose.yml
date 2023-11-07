@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  php:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./html:/var/www/html
+      - ./php-conf.d/php.ini:/usr/local/etc/php/conf.d/custom-php.ini:ro
+    ports:
+      - "80:80"
+
+  mysql:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: mariadb_password
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
