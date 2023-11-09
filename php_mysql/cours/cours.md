@@ -205,7 +205,7 @@ résultat
 
 Les variables commencent par `$`  
 
-Le premier caractère ne peut pas être un chiffre
+Le premier caractère *ne peut pas être un chiffre*
 
 Espaces, accents et caractères spéciaux sont interdits.  
 
@@ -254,7 +254,7 @@ $a = 6; // $b change aussi de valeur !
 | $a -= $b  | $a = $a - $b  | soustraction   |
 | $a *= $b  | $a = $a * $b  | multiplication |
 | $a \\= $b | $a = $a \\ $b | division       |
-| $a %= $b  | $a = $a % $b  | addition       |
+| $a %= $b  | $a = $a % $b  | modulo         |
 | $a **= $b | $a = $a ** $b | exponentiation |
 | $a .= $b  | $a = $a . $b  | concaténation  |
 | $a ??= $b | $a = $a ?? $b | coalescence    |
@@ -427,7 +427,7 @@ echo $chaine[6]; // affiche: W
 ## Changer la casse
 
 ```php
-echo strttoupper('hello world'); // affiche: HELLO WORLD
+echo strtoupper('hello world'); // affiche: HELLO WORLD
 echo strtolower('HELLO world'); // affiche: hello world
 echo ucfirst('hello world'); // affiche: Hello world
 echo ucwords('hello world'); // affiche: Hello World
@@ -1226,32 +1226,6 @@ Chaque ligne est une *entrée*
 | 2   | Bob      | bob@ecv.fr     | mot_de_passe | 
 | 5   | Charles  | charles@ecv.fr | p@ssw0rd     |
 
-## Créer une base
-
-Les instructions en SQL finissent aussi par `;`  
-Par convention on écrit les *mots-clés en majuscule*.
-
-```sql
-CREATE DATABASE nomdelabase;
-```
-
-Pour sélectionner la BDD on utilise: 
-
-```sql
-USE nomdelabase;
-```
-
-## Créer une table
-
-```sql
-CREATE TABLE user (
-    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL
-);
-```
-
 ## Adminer
 
 Il s'agit d'un outil écrit en PHP pour gérer les BDD  
@@ -1267,6 +1241,72 @@ Ce fichier permet d'importer les données
 rapidement dans un autre serveur
 
 
+# Le SQL
+
+## Syntaxe
+
+Les instructions en SQL finissent aussi par `;`  
+Par convention on écrit les *mots-clés en majuscule*.
+
+![](./images/sql_guillemets.png)
+
+
+## `CREATE DATABASE`
+
+```sql
+CREATE DATABASE nomdelabase;
+```
+
+Pour sélectionner la BDD on utilise:
+
+```sql
+USE nomdelabase;
+```
+
+## `CREATE TABLE`
+
+```sql
+CREATE TABLE user (
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL
+);
+```
+
+## `INSERT`
+
+```sql
+INSERT INTO 
+    `user` (`name`, `email`, `password`) 
+VALUES 
+    (`Alice`, `alice@ecv.fr`, `mot_de_passe`),
+    (`Bob`, `bob@ecv.fr`, `1234567890`);
+```
+
+## `SELECT`
+
+```sql
+SELECT * from user; -- tous les champs de tous les users
+```
+
+On peut spécifier les champs et filtrer et trier :
+
+```sql
+SELECT id, name, email FROM user WHERE name LIKE '%ecv.fr' ORDER BY name
+
+# tous les champs sauf 'password' 
+# des utilisateurs dont le mail fini par 'ecv.fr'
+# trie les résultats par nom
+```
+
+## `UPDATE`
+
+```sql
+
+```
+
+
 # PDO
 
 ## C'est quoi ?
@@ -1278,3 +1318,13 @@ On l'utilise via une [extension PHP](https://www.php.net/manual/fr/book.pdo.php)
 il faut installer *les bons drivers* (ici MySQL)
 
 ## Comment ça fonctionne ?
+
+On invoque un *objet* `PDO` qui permet  
+de connecter et requêter la BDD 
+
+```php
+$dsn = 'mysql:host=localhost;dbname=my_recipes;charset=utf8';
+$bdd = new PDO($dsn, 'user', 'password');
+```
+
+## 

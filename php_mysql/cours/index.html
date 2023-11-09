@@ -384,7 +384,7 @@ class="sourceCode php"><code class="sourceCode php"><span id="cb8-1"><a href="#c
 <section id="nommage" class="slide level2">
 <h2>Nommage</h2>
 <p>Les variables commencent par <code>$</code></p>
-<p>Le premier caractère ne peut pas être un chiffre</p>
+<p>Le premier caractère <em>ne peut pas être un chiffre</em></p>
 <p>Espaces, accents et caractères spéciaux sont interdits.</p>
 <p>Le caractère <code>_</code> (undescore) est autorisé</p>
 </section>
@@ -454,7 +454,7 @@ class="sourceCode php"><code class="sourceCode php"><span id="cb12-1"><a href="#
 <tr class="odd">
 <td>$a %= $b</td>
 <td>$a = $a % $b</td>
-<td>addition</td>
+<td>modulo</td>
 </tr>
 <tr class="even">
 <td>$a **= $b</td>
@@ -634,7 +634,7 @@ class="sourceCode php"><code class="sourceCode php"><span id="cb23-1"><a href="#
 <section id="changer-la-casse" class="slide level2">
 <h2>Changer la casse</h2>
 <div class="sourceCode" id="cb24"><pre
-class="sourceCode php"><code class="sourceCode php"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">echo</span> strttoupper(<span class="st">&#39;hello world&#39;</span>)<span class="ot">;</span> <span class="co">// affiche: HELLO WORLD</span></span>
+class="sourceCode php"><code class="sourceCode php"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">echo</span> <span class="fu">strtoupper</span>(<span class="st">&#39;hello world&#39;</span>)<span class="ot">;</span> <span class="co">// affiche: HELLO WORLD</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">echo</span> <span class="fu">strtolower</span>(<span class="st">&#39;HELLO world&#39;</span>)<span class="ot">;</span> <span class="co">// affiche: hello world</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">echo</span> <span class="fu">ucfirst</span>(<span class="st">&#39;hello world&#39;</span>)<span class="ot">;</span> <span class="co">// affiche: Hello world</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">echo</span> <span class="fu">ucwords</span>(<span class="st">&#39;hello world&#39;</span>)<span class="ot">;</span> <span class="co">// affiche: Hello World</span></span></code></pre></div>
@@ -1534,26 +1534,6 @@ Chaque ligne est une <em>entrée</em></p>
 </tbody>
 </table>
 </section>
-<section id="créer-une-base" class="slide level2">
-<h2>Créer une base</h2>
-<p>Les instructions en SQL finissent aussi par <code>;</code><br />
-Par convention on écrit les <em>mots-clés en majuscule</em>.</p>
-<div class="sourceCode" id="cb67"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> nomdelabase;</span></code></pre></div>
-<p>Pour sélectionner la BDD on utilise:</p>
-<div class="sourceCode" id="cb68"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> nomdelabase;</span></code></pre></div>
-</section>
-<section id="créer-une-table" class="slide level2">
-<h2>Créer une table</h2>
-<div class="sourceCode" id="cb69"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="fu">user</span> (</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    name <span class="dt">VARCHAR</span>(<span class="dv">100</span>),</span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    email <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>,</span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">password</span> <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
-</section>
 <section id="adminer" class="slide level2">
 <h2>Adminer</h2>
 <p>Il s’agit d’un outil écrit en PHP pour gérer les BDD</p>
@@ -1565,6 +1545,61 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb69-1"><a href="#
 d’une ou plusieurs BDD via un fichier <em>SQL</em></p>
 <p>Ce fichier permet d’importer les données<br />
 rapidement dans un autre serveur</p>
+</section></section>
+<section>
+<section id="le-sql" class="title-slide slide level1">
+<h1>Le SQL</h1>
+
+</section>
+<section id="syntaxe" class="slide level2">
+<h2>Syntaxe</h2>
+<p>Les instructions en SQL finissent aussi par <code>;</code><br />
+Par convention on écrit les <em>mots-clés en majuscule</em>.</p>
+<p><img data-src="./images/sql_guillemets.png" /></p>
+</section>
+<section id="create-database" class="slide level2">
+<h2><code>CREATE DATABASE</code></h2>
+<div class="sourceCode" id="cb67"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> nomdelabase;</span></code></pre></div>
+<p>Pour sélectionner la BDD on utilise:</p>
+<div class="sourceCode" id="cb68"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> nomdelabase;</span></code></pre></div>
+</section>
+<section id="create-table" class="slide level2">
+<h2><code>CREATE TABLE</code></h2>
+<div class="sourceCode" id="cb69"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="fu">user</span> (</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    name <span class="dt">VARCHAR</span>(<span class="dv">100</span>),</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    email <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>,</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">password</span> <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+</section>
+<section id="insert" class="slide level2">
+<h2><code>INSERT</code></h2>
+<div class="sourceCode" id="cb70"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> </span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    `user` (`name`, `email`, `password`) </span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> </span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    (`Alice`, `alice@ecv.fr`, `mot_de_passe`),</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>    (`Bob`, `bob@ecv.fr`, `<span class="dv">1234567890</span>`);</span></code></pre></div>
+</section>
+<section id="select" class="slide level2">
+<h2><code>SELECT</code></h2>
+<div class="sourceCode" id="cb71"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">from</span> <span class="fu">user</span>; <span class="co">-- tous les champs de tous les users</span></span></code></pre></div>
+<p>On peut spécifier les champs et filtrer et trier :</p>
+<div class="sourceCode" id="cb72"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">id</span>, name, email <span class="kw">FROM</span> <span class="fu">user</span> <span class="kw">WHERE</span> name <span class="kw">LIKE</span> <span class="st">&#39;%ecv.fr&#39;</span> <span class="kw">ORDER</span> <span class="kw">BY</span> name</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a># tous les champs sauf <span class="st">&#39;password&#39;</span> </span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a># des utilisateurs dont le mail fini par <span class="st">&#39;ecv.fr&#39;</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a># trie les résultats par nom</span></code></pre></div>
+</section>
+<section id="update" class="slide level2">
+<h2><code>UPDATE</code></h2>
+<div class="sourceCode" id="cb73"><pre
+class="sourceCode sql"><code class="sourceCode sql"></code></pre></div>
 </section></section>
 <section>
 <section id="pdo" class="title-slide slide level1">
@@ -1583,6 +1618,14 @@ il faut installer <em>les bons drivers</em> (ici MySQL)</p>
 </section>
 <section id="comment-ça-fonctionne" class="slide level2">
 <h2>Comment ça fonctionne ?</h2>
+<p>On invoque un <em>objet</em> <code>PDO</code> qui permet<br />
+de connecter et requêter la BDD</p>
+<div class="sourceCode" id="cb74"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="va">$dsn</span> <span class="op">=</span> <span class="st">&#39;mysql:host=localhost;dbname=my_recipes;charset=utf8&#39;</span><span class="ot">;</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="va">$bdd</span> <span class="op">=</span> <span class="kw">new</span> <span class="bu">PDO</span>(<span class="va">$dsn</span><span class="ot">,</span> <span class="st">&#39;user&#39;</span><span class="ot">,</span> <span class="st">&#39;password&#39;</span>)<span class="ot">;</span></span></code></pre></div>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
 </section></section>
     </div>
   </div>
