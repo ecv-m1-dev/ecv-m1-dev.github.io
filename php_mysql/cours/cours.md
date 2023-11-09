@@ -207,9 +207,9 @@ Les variables commencent par `$`
 
 Le premier caractère *ne peut pas être un chiffre*
 
-Espaces, accents et caractères spéciaux sont interdits.  
+Espaces, accents et caractères spéciaux *sont interdits*.  
 
-Le caractère `_` (undescore) est autorisé  
+Le caractère `_` (undescore) *est autorisé*  
 
 ## Exemples
 
@@ -1174,7 +1174,31 @@ Pour les *rendre indisponible au JS*
 on peut utiliser l'option `httpOnly`
 
 
-# Bases de donnée
+# ![](./images/mysql-logo.png)
+
+## SGDB ? SQL ?
+
+*S*ystème de *G*estion de *B*ase de *D*onnées
+
+Certains utilisent *S*tructured *Q*uery *L*anguage  
+(MySQL, PostgreSQL, ...)
+
+
+D'autre *N*ot *o*nly *SQL* (pas seulement SQL)  
+(MongoDB, CouchDB, ...)
+
+Nous allons nous concentrer sur `MySQL`
+
+## My*SQL*
+
+Développé à partir de *1994* en Suède  
+Première version grand public en *2000*  
+
+Racheté par *Sun Microsystems* en 2008  
+qui a été incorporé à *Oracle* en 2009  
+
+Cette même année est créé *MariaDB*  
+une version open source de MySQL
 
 ## Enregistrer des données
 
@@ -1184,20 +1208,10 @@ mais ça deviendrai vite le bazar
 Du coup on utilise à la place des *bases de données*  
 qui permettent de les organiser
 
-## SGDB ?
-
-Il existe plusieurs   
-*S*ystème de *G*estion de *B*ase de *D*onnées
-
-Certains avec du *SQL* (MySQL, PostgreSQL, ...),  
-D'autre *NoSQL* (MongoDB, CouchDB, ...)
-
-Nous allons nous concentrer sur `MySQL`
-
 ## Exemple de requête
 
 ```sql
-SELECT id, name, email, password FROM user ORDER BY name DESC
+SELECT id, name, email, password FROM user ORDER BY name ASC
 ```
 
 ## Intégration à PHP
@@ -1205,7 +1219,7 @@ SELECT id, name, email, password FROM user ORDER BY name DESC
 ![](./images/php_mysql.png)
 
 
-# MySQL
+# Utilisation
 
 ## Base
 
@@ -1253,6 +1267,8 @@ Par convention on écrit les *mots-clés en majuscule*.
 
 ## `CREATE DATABASE`
 
+Pour créer une BDD
+
 ```sql
 CREATE DATABASE nomdelabase;
 ```
@@ -1263,7 +1279,17 @@ Pour sélectionner la BDD on utilise:
 USE nomdelabase;
 ```
 
+## `DROP DATABASE`
+
+Supprimer une BDD
+
+```sql
+DROP DATABASE nomdelabase;
+```
+
 ## `CREATE TABLE`
+
+Permet de créer une table
 
 ```sql
 CREATE TABLE user (
@@ -1274,7 +1300,19 @@ CREATE TABLE user (
 );
 ```
 
+## `DROP TABLE`
+
+Permet de supprimer une table
+
+```sql
+DROP TABLE user;
+```
+
+# Les entrées
+
 ## `INSERT`
+
+Ajouter des entrées dans une table
 
 ```sql
 INSERT INTO 
@@ -1286,26 +1324,110 @@ VALUES
 
 ## `SELECT`
 
+Récupérer les entrées d'une table
+
 ```sql
 SELECT * from user; -- tous les champs de tous les users
 ```
 
-On peut spécifier les champs et filtrer et trier :
+On peut spécifier les champs à récupérer :
 
 ```sql
-SELECT id, name, email FROM user WHERE name LIKE '%ecv.fr' ORDER BY name
-
 # tous les champs sauf 'password' 
-# des utilisateurs dont le mail fini par 'ecv.fr'
-# trie les résultats par nom
+SELECT id, name, email FROM user;
 ```
 
 ## `UPDATE`
 
-```sql
+Mettre à jour des entrées
 
+```sql
+UPDATE `user` 
+SET `name`= 'quentin', 
+    `email` = 'quentind@gmail.com' 
+WHERE `id` = '1';
 ```
 
+## `DELETE`
+
+Pour supprimer des entrées
+
+```sql
+DELETE FROM `user` WHERE `id` = '1';
+```
+
+*Attention*, en utilisant pas ou mal `WHERE`  
+on peut *vider entièrement une table* 😱
+
+# Filtres, tri, etc.
+
+## `WHERE`
+
+Permet de filtrer les données concernées : 
+
+```sql
+# les utilisateurs majeurs
+SELECT * FROM user WHERE age >= 18;
+```
+
+On l'utilise avec `SELECT`, `UPDATE` ou `DELETE`
+
+## `LIKE`
+
+Pour filtrer du texte :
+
+```sql
+# les utilisateurs dont le mail fini par 'ecv.fr'
+SELECT * FROM user
+WHERE name LIKE '%ecv.fr';
+```
+
+![](./images/mysql-percent.png)
+
+## `ORDER BY`
+
+Pour trier les résultats :  
+
+```sql
+# les utilisateurs par ordre alphabétique
+SELECT * FROM user ORDER BY `name` ASC;
+```
+
+## `DISTINCT`
+
+Sert à dédoublonner les résultats :
+
+```sql
+# affiche les différents noms des utilisateurs
+SELECT DISTINCT name FROM user;
+```
+
+## `AS`
+
+Permet de donner un alias à un résultat : 
+
+```sql
+# affiche les différents noms des utilisateurs
+SELECT DISTINCT name AS "Nom" FROM user;
+```
+
+# Opérations
+
+## `COUNT`
+
+Permet de compter les résultats :
+
+```sql
+# le nombre d'utilisateurs
+SELECT COUNT(name) FROM user;
+```
+## Autres opérations
+
+Exemples
+
+![](./images/mysql-operations.png)
+
+Il en existe beaucoup d'autres
 
 # PDO
 
@@ -1327,4 +1449,4 @@ $dsn = 'mysql:host=localhost;dbname=my_recipes;charset=utf8';
 $bdd = new PDO($dsn, 'user', 'password');
 ```
 
-## 
+
