@@ -1,0 +1,19 @@
+* {
+    font-family: sans-serif;
+}
+
+small {
+    color: #333;
+}
+
+small > strong {
+    color: black;
+}
+
+#question {
+    margin: 20px;
+}
+
+#answers article {
+    margin: 10px;
+}

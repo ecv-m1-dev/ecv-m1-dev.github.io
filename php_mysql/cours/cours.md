@@ -552,7 +552,7 @@ Plusieurs fonction permettent de manipuler les tableaux :
 On utilise les comparaisons pour tester des cas
 
 ```php
-$age = 17;s
+$age = 17;
 
 if ($age < 16) {
     echo "Vous ne pouvez pas passer le permis";
@@ -708,7 +708,7 @@ $array = ['Hello', ' ', 'World'];
 ?>
 
 <p>
-    <?php for ($i = 0; $i <= 1; $i++): ?>
+    <?php for ($i = 0; $i <= 2; $i++): ?>
         <span><?php echo $array[$i]?></span>
     <?php endfor; ?>
 </p>
@@ -1418,7 +1418,7 @@ SELECT DISTINCT name AS "Nom" FROM user;
 Permet de compter les résultats :
 
 ```sql
-# le nombre d'utilisateurs
+# le nombre des utilisateurs
 SELECT COUNT(name) FROM user;
 ```
 ## Autres opérations
