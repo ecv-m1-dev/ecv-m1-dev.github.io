@@ -5,9 +5,9 @@
     </head>
 
     <body>
-        <?php include 'header.php'; ?>
-        <?php include 'question.php'; ?>
-        <?php include 'answers.php'; ?>
-        <?php include 'form.php'; ?>
+        <?php include 'parts/header.php'; ?>
+        <?php include 'parts/question.php'; ?>
+        <?php include 'parts/answers.php'; ?>
+        <?php include 'parts/questionForm.php'; ?>
     </body>
 </html>
