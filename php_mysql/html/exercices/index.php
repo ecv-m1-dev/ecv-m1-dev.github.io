@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html lang="fr"> <!-- La balise est avant les headers -->
 
 <head>
