@@ -1,19 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Eater&display=swap');
 * {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 small {
-    color: #333;
+  color: #333;
 }
 
 small > strong {
-    color: black;
+  color: black;
 }
 
 #question {
-    margin: 20px;
+  margin: 20px;
 }
 
 #answers article {
-    margin: 10px;
+  margin: 10px;
+}
+
+#redirection-pasfeur {
+  margin: 20px;
+  padding: 10px;
+  background-color: #f00;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#redirection-pasfeur :is(h1, h2, h3, h4, h5, h6) {
+  font-family: "Eater", cursive;
+}
+
+#redirection-feur {
+  margin: 20px;
+  padding: 10px;
+  background-color: rgb(253, 197, 255);
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#redirection-feur :is(h1, h2, h3, h4, h5, h6) {
+  font-family: "Hachi Maru Pop", cursive;
 }
