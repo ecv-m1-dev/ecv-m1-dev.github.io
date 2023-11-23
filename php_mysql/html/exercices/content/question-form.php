@@ -1,10 +1,6 @@
-<form action="">
-    <h1>Poser une question</h1>
-    <label for="title">Titre de la publication :</label><br>
-    <input type="text" placeholder="Titre...">
-    <br>
-    <label for="text">Contenu de la publication :</label><br>
-    <textarea name="question" cols="100" rows="15" placeholder="Posez votre question ici..."></textarea>
-    <br>
+<form action="treatment.php" method="post">
+    <h1>Question : </h1>
+    <label for="question">Tu veux quoi :</label>
+    <input type="text" id="question" name="question" placeholder="Titre...">
     <input type="button" value="Soumettre question">
 </form>
