@@ -5,7 +5,7 @@
 }
 
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 small {
@@ -48,4 +48,21 @@ small > strong {
 
 #redirection-feur :is(h1, h2, h3, h4, h5, h6) {
   font-family: "Hachi Maru Pop", cursive;
+}
+
+#redirection-pasfeur > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#redirection-pasfeur > div > p{
+    text-align: left;
+    font-family: "Eater", cursive;
+}
+
+#map {
+  height: 400px;
+  width: 75%;
+  margin: 0 auto;
 }
