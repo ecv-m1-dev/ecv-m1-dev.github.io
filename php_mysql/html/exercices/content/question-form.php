@@ -1,4 +1,4 @@
-<form action="">
+<form action="/exercices/content/process-question.php" method="POST">
     <h1>Poser une question</h1>
     <label for="title">Titre de la publication :</label><br>
     <input name="title" type="text" placeholder="Titre...">
