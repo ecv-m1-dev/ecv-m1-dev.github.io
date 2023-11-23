@@ -1035,7 +1035,7 @@ Le navigateur va les afficher sans les interpréter
 <form action="upload.php" method="POST" enctype="multipart/form-data">
     <div>
         <label for="upload">Fichier</label>
-        <input id="upload" name="screenshot" type="file" />
+        <input id="upload" name="upload" type="file" />
     </div>
 </form>
 ```

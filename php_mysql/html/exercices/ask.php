@@ -7,11 +7,7 @@
 
 <body>
 
-<?php include './parts/question.php' ?>
-
-<hr />
-
-<?php include './parts/answers.php' ?>
+<?php include './parts/question_form.php' ?>
 
 </body>
 
