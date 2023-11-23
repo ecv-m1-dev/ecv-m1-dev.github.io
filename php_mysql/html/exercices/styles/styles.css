@@ -1,7 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Eater&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Eater&display=swap");
 * {
   font-family: sans-serif;
+}
+
+body {
+  overflow: hidden;
 }
 
 small {
