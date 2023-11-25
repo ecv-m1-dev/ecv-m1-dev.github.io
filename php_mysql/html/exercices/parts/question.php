@@ -1,9 +1,9 @@
 <?php
+session_start();
+// session_destroy();
 
-  session_start();
-
-  $title = $_SESSION['title'] ?? "Aucun titre pour l'instant";
-  $question = $_SESSION['question'] ?? "Aucune question pour l'instant";
+$title = $_SESSION['title'] ?? "Aucun titre pour l'instant";
+$question = $_SESSION['question'] ?? "Aucune question pour l'instant";
 
 ?>
 
@@ -20,7 +20,8 @@
   </strong>
   posée par
   <strong>
-    <?php global $author; echo $author ?>
+    <?php global $author;
+    echo $author ?>
   </strong>
 
   <a href="/exercices/ask.php">
@@ -29,5 +30,6 @@
 </small>
 
 <section id="question">
-  <?php global $question; echo $question ?>
+  <?php global $question;
+  echo $question ?>
 </section>

@@ -2,12 +2,12 @@
 
 <head>
     <?php include 'variables.php' ?>
-    <link href="styles/styles.css" rel="stylesheet"/>
+    <link href="styles/styles.css" rel="stylesheet" />
 </head>
 
 <body>
 
-<?php include './parts/question_form.php' ?>
+    <?php include './forms/question.php' ?>
 
 </body>
 
