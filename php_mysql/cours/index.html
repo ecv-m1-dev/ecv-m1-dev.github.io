@@ -1500,8 +1500,9 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb66-1"><a href="#
 <p><img data-src="./images/php_mysql.png" /></p>
 </section></section>
 <section>
-<section id="utilisation-1" class="title-slide slide level1">
-<h1>Utilisation</h1>
+<section id="structured-query-language"
+class="title-slide slide level1">
+<h1><em>S</em>tructured <em>Q</em>uery <em>L</em>anguage</h1>
 
 </section>
 <section id="base" class="slide level2">
@@ -1559,153 +1560,6 @@ d’une ou plusieurs BDD via un fichier <em>SQL</em></p>
 rapidement dans un autre serveur</p>
 </section></section>
 <section>
-<section id="le-sql" class="title-slide slide level1">
-<h1>Le SQL</h1>
-
-</section>
-<section id="syntaxe" class="slide level2">
-<h2>Syntaxe</h2>
-<p>Les instructions en SQL finissent aussi par <code>;</code><br />
-Par convention on écrit les <em>mots-clés en majuscule</em>.</p>
-<p><img data-src="./images/sql_guillemets.png" /></p>
-</section>
-<section id="create-database" class="slide level2">
-<h2><code>CREATE DATABASE</code></h2>
-<p>Pour créer une BDD</p>
-<div class="sourceCode" id="cb67"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> nomdelabase;</span></code></pre></div>
-<p>Pour sélectionner la BDD on utilise:</p>
-<div class="sourceCode" id="cb68"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> nomdelabase;</span></code></pre></div>
-</section>
-<section id="drop-database" class="slide level2">
-<h2><code>DROP DATABASE</code></h2>
-<p>Supprimer une BDD</p>
-<div class="sourceCode" id="cb69"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> nomdelabase;</span></code></pre></div>
-</section>
-<section id="create-table" class="slide level2">
-<h2><code>CREATE TABLE</code></h2>
-<p>Permet de créer une table</p>
-<div class="sourceCode" id="cb70"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="fu">user</span> (</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>    name <span class="dt">VARCHAR</span>(<span class="dv">100</span>),</span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    email <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>,</span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">password</span> <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
-</section>
-<section id="drop-table" class="slide level2">
-<h2><code>DROP TABLE</code></h2>
-<p>Permet de supprimer une table</p>
-<div class="sourceCode" id="cb71"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="fu">user</span>;</span></code></pre></div>
-</section></section>
-<section>
-<section id="les-entrées" class="title-slide slide level1">
-<h1>Les entrées</h1>
-
-</section>
-<section id="insert" class="slide level2">
-<h2><code>INSERT</code></h2>
-<p>Ajouter des entrées dans une table</p>
-<div class="sourceCode" id="cb72"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> </span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    `user` (`name`, `email`, `password`) </span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> </span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>    (`Alice`, `alice@ecv.fr`, `mot_de_passe`),</span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    (`Bob`, `bob@ecv.fr`, `<span class="dv">1234567890</span>`);</span></code></pre></div>
-</section>
-<section id="select" class="slide level2">
-<h2><code>SELECT</code></h2>
-<p>Récupérer les entrées d’une table</p>
-<div class="sourceCode" id="cb73"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">from</span> <span class="fu">user</span>; <span class="co">-- tous les champs de tous les users</span></span></code></pre></div>
-<p>On peut spécifier les champs à récupérer :</p>
-<div class="sourceCode" id="cb74"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a># tous les champs sauf <span class="st">&#39;password&#39;</span> </span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">id</span>, name, email <span class="kw">FROM</span> <span class="fu">user</span>;</span></code></pre></div>
-</section>
-<section id="update" class="slide level2">
-<h2><code>UPDATE</code></h2>
-<p>Mettre à jour des entrées</p>
-<div class="sourceCode" id="cb75"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> `user` </span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> `name`<span class="op">=</span> <span class="st">&#39;quentin&#39;</span>, </span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    `email` <span class="op">=</span> <span class="st">&#39;quentind@gmail.com&#39;</span> </span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> `id` <span class="op">=</span> <span class="st">&#39;1&#39;</span>;</span></code></pre></div>
-</section>
-<section id="delete" class="slide level2">
-<h2><code>DELETE</code></h2>
-<p>Pour supprimer des entrées</p>
-<div class="sourceCode" id="cb76"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> `user` <span class="kw">WHERE</span> `id` <span class="op">=</span> <span class="st">&#39;1&#39;</span>;</span></code></pre></div>
-<p><em>Attention</em>, en utilisant pas ou mal <code>WHERE</code><br />
-on peut <em>vider entièrement une table</em> 😱</p>
-</section></section>
-<section>
-<section id="filtres-tri-etc." class="title-slide slide level1">
-<h1>Filtres, tri, etc.</h1>
-
-</section>
-<section id="where" class="slide level2">
-<h2><code>WHERE</code></h2>
-<p>Permet de filtrer les données concernées :</p>
-<div class="sourceCode" id="cb77"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a># les utilisateurs majeurs</span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> <span class="fu">user</span> <span class="kw">WHERE</span> age <span class="op">&gt;=</span> <span class="dv">18</span>;</span></code></pre></div>
-<p>On l’utilise avec <code>SELECT</code>, <code>UPDATE</code> ou
-<code>DELETE</code></p>
-</section>
-<section id="like" class="slide level2">
-<h2><code>LIKE</code></h2>
-<p>Pour filtrer du texte :</p>
-<div class="sourceCode" id="cb78"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a># les utilisateurs dont le mail fini par <span class="st">&#39;ecv.fr&#39;</span></span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> <span class="fu">user</span></span>
-<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> name <span class="kw">LIKE</span> <span class="st">&#39;%ecv.fr&#39;</span>;</span></code></pre></div>
-<p><img data-src="./images/mysql-percent.png" /></p>
-</section>
-<section id="order-by" class="slide level2">
-<h2><code>ORDER BY</code></h2>
-<p>Pour trier les résultats :</p>
-<div class="sourceCode" id="cb79"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a># les utilisateurs par ordre alphabétique</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> <span class="fu">user</span> <span class="kw">ORDER</span> <span class="kw">BY</span> `name` <span class="kw">ASC</span>;</span></code></pre></div>
-</section>
-<section id="distinct" class="slide level2">
-<h2><code>DISTINCT</code></h2>
-<p>Sert à dédoublonner les résultats :</p>
-<div class="sourceCode" id="cb80"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a># affiche les différents noms des utilisateurs</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> name <span class="kw">FROM</span> <span class="fu">user</span>;</span></code></pre></div>
-</section>
-<section id="as" class="slide level2">
-<h2><code>AS</code></h2>
-<p>Permet de donner un alias à un résultat :</p>
-<div class="sourceCode" id="cb81"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a># affiche les différents noms des utilisateurs</span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> name <span class="kw">AS</span> <span class="ot">&quot;Nom&quot;</span> <span class="kw">FROM</span> <span class="fu">user</span>;</span></code></pre></div>
-</section></section>
-<section>
-<section id="opérations" class="title-slide slide level1">
-<h1>Opérations</h1>
-
-</section>
-<section id="count" class="slide level2">
-<h2><code>COUNT</code></h2>
-<p>Permet de compter les résultats :</p>
-<div class="sourceCode" id="cb82"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a># le nombre des utilisateurs</span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(name) <span class="kw">FROM</span> <span class="fu">user</span>;</span></code></pre></div>
-</section>
-<section id="autres-opérations" class="slide level2">
-<h2>Autres opérations</h2>
-<p>Exemples</p>
-<p><img data-src="./images/mysql-operations.png" /></p>
-<p>Il en existe beaucoup d’autres</p>
-</section></section>
-<section>
 <section id="pdo" class="title-slide slide level1">
 <h1>PDO</h1>
 
@@ -1724,9 +1578,240 @@ il faut installer <em>les bons drivers</em> (ici MySQL)</p>
 <h2>Comment ça fonctionne ?</h2>
 <p>On invoque un <em>objet</em> <code>PDO</code> qui permet<br />
 de connecter et requêter la BDD</p>
+<div class="sourceCode" id="cb67"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="va">$dsn</span> <span class="op">=</span> <span class="st">&#39;mysql:host=localhost;dbname=my_recipes;charset=utf8&#39;</span><span class="ot">;</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="va">$bdd</span> <span class="op">=</span> <span class="kw">new</span> <span class="bu">PDO</span>(<span class="va">$dsn</span><span class="ot">,</span> <span class="st">&#39;user&#39;</span><span class="ot">,</span> <span class="st">&#39;password&#39;</span>)<span class="ot">;</span></span></code></pre></div>
+</section>
+<section id="exemple-de-requête-1" class="slide level2">
+<h2>Exemple de requête</h2>
+<div class="sourceCode" id="cb68"><pre
+class="sourceCode php"><code class="sourceCode php"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="va">$req</span> <span class="op">=</span> <span class="va">$db</span>-&gt;prepare(<span class="st">&quot;SELECT name, colour FROM fruit&quot;</span>)<span class="ot">;</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="va">$req</span>-&gt;execute()<span class="ot">;</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Récupère toutes les données</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="va">$result</span> <span class="op">=</span> <span class="va">$req</span>-&gt;fetchAll()<span class="ot">;</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print_r</span>(<span class="va">$result</span>)<span class="ot">;</span></span></code></pre></div>
+</section></section>
+<section>
+<section id="les-requêtes" class="title-slide slide level1">
+<h1>Les requêtes</h1>
+
+</section>
+<section id="syntaxe" class="slide level2">
+<h2>Syntaxe</h2>
+<p>Les instructions en SQL finissent aussi par <code>;</code><br />
+Par convention on écrit les <em>mots-clés en majuscule</em>.</p>
+<p><img data-src="./images/sql_guillemets.png" /></p>
+</section>
+<section id="create-database" class="slide level2">
+<h2><code>CREATE DATABASE</code></h2>
+<p>Pour créer une BDD</p>
+<div class="sourceCode" id="cb69"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">DATABASE</span> nomdelabase;</span></code></pre></div>
+<p>Pour sélectionner la BDD on utilise:</p>
+<div class="sourceCode" id="cb70"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> nomdelabase;</span></code></pre></div>
+</section>
+<section id="drop-database" class="slide level2">
+<h2><code>DROP DATABASE</code></h2>
+<p>Supprimer une BDD</p>
+<div class="sourceCode" id="cb71"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">DATABASE</span> nomdelabase;</span></code></pre></div>
+</section>
+<section id="create-table" class="slide level2">
+<h2><code>CREATE TABLE</code></h2>
+<p>Permet de créer une table</p>
+<div class="sourceCode" id="cb72"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="fu">user</span> (</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span> AUTO_INCREMENT <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    name <span class="dt">VARCHAR</span>(<span class="dv">100</span>),</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>    email <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>,</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">password</span> <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+</section>
+<section id="drop-table" class="slide level2">
+<h2><code>DROP TABLE</code></h2>
+<p>Permet de supprimer une table</p>
+<div class="sourceCode" id="cb73"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="fu">user</span>;</span></code></pre></div>
+</section></section>
+<section>
+<section id="les-entrées" class="title-slide slide level1">
+<h1>Les entrées</h1>
+
+</section>
+<section id="insert" class="slide level2">
+<h2><code>INSERT</code></h2>
+<p>Ajouter des entrées dans une table</p>
+<div class="sourceCode" id="cb74"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> </span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    `user` (`name`, `email`, `password`) </span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> </span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>    (`Alice`, `alice@ecv.fr`, `mot_de_passe`),</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>    (`Bob`, `bob@ecv.fr`, `<span class="dv">1234567890</span>`);</span></code></pre></div>
+</section>
+<section id="select" class="slide level2">
+<h2><code>SELECT</code></h2>
+<p>Récupérer les entrées d’une table</p>
+<div class="sourceCode" id="cb75"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">from</span> <span class="fu">user</span>; <span class="co">-- tous les champs de tous les users</span></span></code></pre></div>
+<p>On peut spécifier les champs à récupérer :</p>
+<div class="sourceCode" id="cb76"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a># tous les champs sauf <span class="st">&#39;password&#39;</span> </span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">id</span>, name, email <span class="kw">FROM</span> <span class="fu">user</span>;</span></code></pre></div>
+</section>
+<section id="update" class="slide level2">
+<h2><code>UPDATE</code></h2>
+<p>Mettre à jour des entrées</p>
+<div class="sourceCode" id="cb77"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> `user` </span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> `name`<span class="op">=</span> <span class="st">&#39;quentin&#39;</span>, </span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    `email` <span class="op">=</span> <span class="st">&#39;quentind@gmail.com&#39;</span> </span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> `id` <span class="op">=</span> <span class="st">&#39;1&#39;</span>;</span></code></pre></div>
+</section>
+<section id="delete" class="slide level2">
+<h2><code>DELETE</code></h2>
+<p>Pour supprimer des entrées</p>
+<div class="sourceCode" id="cb78"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> `user` <span class="kw">WHERE</span> `id` <span class="op">=</span> <span class="st">&#39;1&#39;</span>;</span></code></pre></div>
+<p><em>Attention</em>, en utilisant pas ou mal <code>WHERE</code><br />
+on peut <em>vider entièrement une table</em> 😱</p>
+</section></section>
+<section>
+<section id="filtres-tri-etc." class="title-slide slide level1">
+<h1>Filtres, tri, etc.</h1>
+
+</section>
+<section id="where" class="slide level2">
+<h2><code>WHERE</code></h2>
+<p>Permet de filtrer les données concernées :</p>
+<div class="sourceCode" id="cb79"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a># les utilisateurs majeurs</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> <span class="fu">user</span> <span class="kw">WHERE</span> age <span class="op">&gt;=</span> <span class="dv">18</span>;</span></code></pre></div>
+<p>On l’utilise avec <code>SELECT</code>, <code>UPDATE</code> ou
+<code>DELETE</code></p>
+</section>
+<section id="like" class="slide level2">
+<h2><code>LIKE</code></h2>
+<p>Pour filtrer du texte :</p>
+<div class="sourceCode" id="cb80"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a># les utilisateurs dont le mail fini par <span class="st">&#39;ecv.fr&#39;</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> <span class="fu">user</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> name <span class="kw">LIKE</span> <span class="st">&#39;%ecv.fr&#39;</span>;</span></code></pre></div>
+<p><img data-src="./images/mysql-percent.png" /></p>
+</section>
+<section id="order-by" class="slide level2">
+<h2><code>ORDER BY</code></h2>
+<p>Pour trier les résultats :</p>
+<div class="sourceCode" id="cb81"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a># les utilisateurs par ordre alphabétique</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> <span class="fu">user</span> <span class="kw">ORDER</span> <span class="kw">BY</span> `name` <span class="kw">ASC</span>;</span></code></pre></div>
+</section>
+<section id="distinct" class="slide level2">
+<h2><code>DISTINCT</code></h2>
+<p>Sert à dédoublonner les résultats :</p>
+<div class="sourceCode" id="cb82"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a># affiche les différents noms des utilisateurs</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> name <span class="kw">FROM</span> <span class="fu">user</span>;</span></code></pre></div>
+</section>
+<section id="as" class="slide level2">
+<h2><code>AS</code></h2>
+<p>Permet de donner un alias à un résultat :</p>
 <div class="sourceCode" id="cb83"><pre
-class="sourceCode php"><code class="sourceCode php"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="va">$dsn</span> <span class="op">=</span> <span class="st">&#39;mysql:host=localhost;dbname=my_recipes;charset=utf8&#39;</span><span class="ot">;</span></span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="va">$bdd</span> <span class="op">=</span> <span class="kw">new</span> <span class="bu">PDO</span>(<span class="va">$dsn</span><span class="ot">,</span> <span class="st">&#39;user&#39;</span><span class="ot">,</span> <span class="st">&#39;password&#39;</span>)<span class="ot">;</span></span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a># affiche les différents noms des utilisateurs</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> name <span class="kw">AS</span> <span class="ot">&quot;Nom&quot;</span> <span class="kw">FROM</span> <span class="fu">user</span>;</span></code></pre></div>
+</section></section>
+<section>
+<section id="opérations" class="title-slide slide level1">
+<h1>Opérations</h1>
+
+</section>
+<section id="count" class="slide level2">
+<h2><code>COUNT</code></h2>
+<p>Permet de compter les résultats :</p>
+<div class="sourceCode" id="cb84"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a># le nombre des utilisateurs</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(name) <span class="kw">FROM</span> <span class="fu">user</span>;</span></code></pre></div>
+</section>
+<section id="autres-opérations" class="slide level2">
+<h2>Autres opérations</h2>
+<p>Exemples</p>
+<p><img data-src="./images/mysql-operations.png" /></p>
+<p>Il en existe beaucoup d’autres</p>
+</section></section>
+<section>
+<section id="modifier-les-tables" class="title-slide slide level1">
+<h1>Modifier les tables</h1>
+
+</section>
+<section id="alter-table" class="slide level2">
+<h2>ALTER TABLE</h2>
+</section>
+<section id="créer-un-champ" class="slide level2">
+<h2>Créer un champ</h2>
+</section>
+<section id="supprimer-un-champ" class="slide level2">
+<h2>Supprimer un champ</h2>
+</section></section>
+<section>
+<section id="lier-les-données" class="title-slide slide level1">
+<h1>Lier les données</h1>
+
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p>Permet de récupérer les données liées facilement Les relations
+structurent la BDD</p>
+<p><img data-src="./images/db_structure.png" /></p>
+</section>
+<section id="relation-1-to-many" class="slide level2">
+<h2>Relation 1-to-many</h2>
+<p>Exemple: Plusieurs utilisateur parlent la même langue<br />
+Il faut ajouter <code>langue_id</code> dans la table utilisateur,<br />
+qui pointe vers la valeur de la langue parlée</p>
+<p><img data-src="./images/one-to-many.png" /></p>
+</section>
+<section id="récupérer-les-données" class="slide level2">
+<h2>Récupérer les données</h2>
+<p>On utilise les mots clés <code>JOIN</code> et <code>ON</code><br />
+pour indiquer qu’on souhaite lier les données</p>
+<div class="sourceCode" id="cb85"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> utilisateur</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> langue</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> utilisateur.langue_id <span class="op">=</span> langue.<span class="kw">id</span>;</span></code></pre></div>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<pre><code>+----+-------------+-----------+----+-----------+
+| id | nom         | langue_id | id | nom       |
++----+-------------+-----------+----+-----------+
+|  1 | durantay    |         1 |  1 | français  |
+|  2 | dupont      |         1 |  1 | français  |
+|  5 | paul        |         1 |  1 | français  |
+|  6 | de vauclerc |         1 |  1 | français  |
+|  7 | gluntig     |         1 |  1 | français  |
+| 10 | tember      |         1 |  1 | français  |
+|  3 | miller      |         2 |  2 | anglais   |
+|  4 | zuckerberg  |         2 |  2 | anglais   |
+|  8 | cavill      |         2 |  2 | anglais   |
+|  9 | hopper      |         2 |  2 | anglais   |
++----+-------------+-----------+----+-----------+</code></pre>
+<p>Les deux dernières colonnes décrivent la <code>langue</code></p>
+</section>
+<section id="relation-many-to-many" class="slide level2">
+<h2>Relation Many-to-many</h2>
+<p>On peut imaginer vouloir faire en sorte<br />
+que les utilisateurs utilisent plusieurs aliments</p>
+<p><img data-src="./images/many-to-many.png" /></p>
+</section>
+<section id="la-table-de-liaison" class="slide level2">
+<h2>La table de liaison</h2>
+<p>On la nomme en général <code>{table1}_{table2}</code></p>
+<p><img data-src="./images/table-liaison.png" /></p>
+</section>
+<section id="en-pratique" class="slide level2">
+<h2>En pratique</h2>
 </section></section>
     </div>
   </div>

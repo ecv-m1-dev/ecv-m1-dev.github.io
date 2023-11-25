@@ -1219,7 +1219,7 @@ SELECT id, name, email, password FROM user ORDER BY name ASC
 ![](./images/php_mysql.png)
 
 
-# Utilisation
+# *S*tructured *Q*uery *L*anguage
 
 ## Base
 
@@ -1254,8 +1254,39 @@ d'une ou plusieurs BDD via un fichier *SQL*
 Ce fichier permet d'importer les données  
 rapidement dans un autre serveur
 
+# PDO
 
-# Le SQL
+## C'est quoi ?
+
+*P*HP *D*ata *O*bject est une *couche d'abstraction*  
+pour manipuler les bases de données
+
+On l'utilise via une [extension PHP](https://www.php.net/manual/fr/book.pdo.php) et  
+il faut installer *les bons drivers* (ici MySQL)
+
+## Comment ça fonctionne ?
+
+On invoque un *objet* `PDO` qui permet  
+de connecter et requêter la BDD
+
+```php
+$dsn = 'mysql:host=localhost;dbname=my_recipes;charset=utf8';
+$bdd = new PDO($dsn, 'user', 'password');
+```
+
+## Exemple de requête
+
+```php
+$req = $db->prepare("SELECT name, colour FROM fruit");
+$req->execute();
+
+// Récupère toutes les données
+$result = $req->fetchAll();
+print_r($result);
+```
+
+
+# Les requêtes
 
 ## Syntaxe
 
@@ -1429,24 +1460,79 @@ Exemples
 
 Il en existe beaucoup d'autres
 
-# PDO
 
-## C'est quoi ?
 
-*P*HP *D*ata *O*bject est une *couche d'abstraction*  
-pour manipuler les bases de données
+# Modifier les tables
 
-On l'utilise via une [extension PHP](https://www.php.net/manual/fr/book.pdo.php) et  
-il faut installer *les bons drivers* (ici MySQL)
+## ALTER TABLE
 
-## Comment ça fonctionne ?
+## Créer un champ
 
-On invoque un *objet* `PDO` qui permet  
-de connecter et requêter la BDD 
+## Supprimer un champ
 
-```php
-$dsn = 'mysql:host=localhost;dbname=my_recipes;charset=utf8';
-$bdd = new PDO($dsn, 'user', 'password');
+
+
+# Lier les données
+
+##
+
+Permet de récupérer les données liées facilement
+Les relations structurent la BDD
+
+![](./images/db_structure.png)
+
+## Relation 1-to-many
+
+Exemple: Plusieurs utilisateur parlent la même langue  
+Il faut ajouter `langue_id` dans la table utilisateur,  
+qui pointe vers la valeur de la langue parlée
+
+![](./images/one-to-many.png)
+
+## Récupérer les données
+
+On utilise les mots clés `JOIN` et `ON`  
+pour indiquer qu'on souhaite lier les données
+
+```sql
+SELECT * 
+FROM utilisateur
+JOIN langue
+ON utilisateur.langue_id = langue.id;
 ```
 
+##
 
+```
++----+-------------+-----------+----+-----------+
+| id | nom         | langue_id | id | nom       |
++----+-------------+-----------+----+-----------+
+|  1 | durantay    |         1 |  1 | français  |
+|  2 | dupont      |         1 |  1 | français  |
+|  5 | paul        |         1 |  1 | français  |
+|  6 | de vauclerc |         1 |  1 | français  |
+|  7 | gluntig     |         1 |  1 | français  |
+| 10 | tember      |         1 |  1 | français  |
+|  3 | miller      |         2 |  2 | anglais   |
+|  4 | zuckerberg  |         2 |  2 | anglais   |
+|  8 | cavill      |         2 |  2 | anglais   |
+|  9 | hopper      |         2 |  2 | anglais   |
++----+-------------+-----------+----+-----------+
+```
+
+Les deux dernières colonnes décrivent la `langue`
+
+## Relation Many-to-many
+
+On peut imaginer vouloir faire en sorte  
+que les utilisateurs utilisent plusieurs aliments
+
+![](./images/many-to-many.png)
+
+## La table de liaison
+
+On la nomme en général `{table1}_{table2}`
+
+![](./images/table-liaison.png)
+
+## En pratique
