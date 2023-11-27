@@ -1,18 +1,13 @@
-<html lang="fr"> <!-- La balise est avant les headers -->
+<html lang="fr">
+    <head>
+        <?php include 'variables.php'; ?>
+        <link href="styles/styles.css" rel="stylesheet" />
+    </head>
 
-<head>
-    <?php include 'variables.php' ?>
-    <link href="styles/styles.css" rel="stylesheet"/>
-</head>
-
-<body>
-
-<?php include './parts/question.php' ?>
-
-<hr />
-
-<?php include './parts/answers.php' ?>
-
-</body>
-
+    <body>
+        <?php include 'parts/header.php'; ?>
+        <?php include 'parts/question.php'; ?>
+        <?php include 'parts/answers.php'; ?>
+        <?php include 'parts/questionForm.php'; ?>
+    </body>
 </html>

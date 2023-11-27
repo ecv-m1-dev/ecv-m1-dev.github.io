@@ -1,9 +1,16 @@
 <section id="answers">
-  Réponses :
-  <?php global $answers; ?>
-  <?php foreach ($answers as $answer) : ?>
-    <article style="border: solid 1px; padding: 10px">
-      <?php echo $answer ?>
-    </article>
-  <?php endforeach; ?>
+    <?php global $answers; ?>
+    <!-- <?php foreach ($answers as $answer): ?>
+      <article>
+        <?php echo $answer ?>
+      </article>
+      <hr />
+    <?php endforeach; ?> -->
+
+    <?php
+    foreach ($answers as $answer) {
+//        echo '<article>' . $answer . '</article>';
+        echo "<article> $answer </article>";
+    }
+    ?>
 </section>
