@@ -1737,7 +1737,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb84-1"><a href="#
 <h2>Autres opérations</h2>
 <p>Exemples</p>
 <p><img data-src="./images/mysql-operations.png" /></p>
-<p>Il en existe beaucoup d’autres</p>
+<p>Il en existe beaucoup d’autres…</p>
 </section></section>
 <section>
 <section id="modifier-les-tables" class="title-slide slide level1">
@@ -1746,12 +1746,31 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb84-1"><a href="#
 </section>
 <section id="alter-table" class="slide level2">
 <h2>ALTER TABLE</h2>
+<p>Avec ces mots-clés, on peut<br />
+<em>modifier la structure des tables</em></p>
 </section>
-<section id="créer-un-champ" class="slide level2">
-<h2>Créer un champ</h2>
+<section id="ajouter-un-champ" class="slide level2">
+<h2>Ajouter un champ</h2>
+<p>Pour cela on utilise <code>ADD</code></p>
+<p><img data-src="./images/ajout_colonne.png" /></p>
 </section>
 <section id="supprimer-un-champ" class="slide level2">
 <h2>Supprimer un champ</h2>
+<p>Pour ça, on utilise <code>DROP</code></p>
+<p><img data-src="./images/supp_colonne.png" /></p>
+<p>Attention, on perd les données des entités<br />
+pour ce champ, à utiliser avec prudence !</p>
+</section>
+<section id="modifier-le-type-dun-champ" class="slide level2">
+<h2>Modifier le type d’un champ</h2>
+<p>Pour ça, on utilise <code>MODIFY</code></p>
+<p><img data-src="./images/modif-colonne.png" /></p>
+</section>
+<section id="renommer-un-champ" class="slide level2">
+<h2>Renommer un champ</h2>
+<p>Cette fois-ci on utilise <code>RENAME COLUMN</code></p>
+<div class="sourceCode" id="cb85"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> t1 <span class="kw">RENAME</span> <span class="kw">COLUMN</span> old_col <span class="kw">TO</span> new_col;</span></code></pre></div>
 </section></section>
 <section>
 <section id="lier-les-données" class="title-slide slide level1">
@@ -1771,15 +1790,38 @@ Il faut ajouter <code>langue_id</code> dans la table utilisateur,<br />
 qui pointe vers la valeur de la langue parlée</p>
 <p><img data-src="./images/one-to-many.png" /></p>
 </section>
+<section id="en-pratique" class="slide level2">
+<h2>En pratique :</h2>
+<p>Ajout du champ qui pointe vers la table <code>langue</code></p>
+<div class="sourceCode" id="cb86"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> utilisateur</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> langue_id <span class="dt">INT</span> <span class="kw">NULL</span>;</span></code></pre></div>
+<p>Ajout de la <em>clé étrangère</em> qui matérialise ce lien</p>
+<div class="sourceCode" id="cb87"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> utilisateur</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (langue_id) <span class="kw">REFERENCES</span> langue (<span class="kw">id</span>)</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span>;</span></code></pre></div>
+</section>
+<section id="on-delete" class="slide level2">
+<h2><code>ON DELETE</code></h2>
+<p>Ce mot clé décrit le comportement lors de la destruction d’une entité
+liée :</p>
+<ul>
+<li><code>RESTRICT</code> : on empêche la suppression via une
+erreur</li>
+<li><code>SET NULL</code> : on vide le champ / retire la liaison</li>
+<li><code>CASCADE</code> : on supprime les entités liées</li>
+</ul>
+</section>
 <section id="récupérer-les-données" class="slide level2">
 <h2>Récupérer les données</h2>
 <p>On utilise les mots clés <code>JOIN</code> et <code>ON</code><br />
 pour indiquer qu’on souhaite lier les données</p>
-<div class="sourceCode" id="cb85"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> utilisateur</span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> langue</span>
-<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> utilisateur.langue_id <span class="op">=</span> langue.<span class="kw">id</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> utilisateur</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> langue</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> utilisateur.langue_id <span class="op">=</span> langue.<span class="kw">id</span>;</span></code></pre></div>
 </section>
 <section id="section-4" class="slide level2">
 <h2></h2>
@@ -1807,11 +1849,15 @@ que les utilisateurs utilisent plusieurs aliments</p>
 </section>
 <section id="la-table-de-liaison" class="slide level2">
 <h2>La table de liaison</h2>
-<p>On la nomme en général <code>{table1}_{table2}</code></p>
+<p>Pour ce type de lien on a besoin d’une <em>table de liaison</em> On
+la nomme en général <code>{table1}_{table2}</code></p>
 <p><img data-src="./images/table-liaison.png" /></p>
 </section>
-<section id="en-pratique" class="slide level2">
-<h2>En pratique</h2>
+<section id="mise-en-place" class="slide level2">
+<h2>Mise en place</h2>
+</section>
+<section id="récupérer-les-données-1" class="slide level2">
+<h2>Récupérer les données</h2>
 </section></section>
     </div>
   </div>

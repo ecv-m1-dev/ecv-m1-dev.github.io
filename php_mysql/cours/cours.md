@@ -1458,7 +1458,7 @@ Exemples
 
 ![](./images/mysql-operations.png)
 
-Il en existe beaucoup d'autres
+Il en existe beaucoup d'autres...
 
 
 
@@ -1466,10 +1466,37 @@ Il en existe beaucoup d'autres
 
 ## ALTER TABLE
 
-## Créer un champ
+Avec ces mots-clés, on peut  
+*modifier la structure des tables*
+
+## Ajouter un champ
+
+Pour cela on utilise `ADD`
+
+![](./images/ajout_colonne.png)
 
 ## Supprimer un champ
 
+Pour ça, on utilise `DROP`
+
+![](./images/supp_colonne.png)
+
+Attention, on perd les données des entités  
+pour ce champ, à utiliser avec prudence !
+
+## Modifier le type d'un champ
+
+Pour ça, on utilise `MODIFY`
+
+![](./images/modif-colonne.png)
+
+## Renommer un champ
+
+Cette fois-ci on utilise `RENAME COLUMN`
+
+```sql
+ALTER TABLE t1 RENAME COLUMN old_col TO new_col;
+```
 
 
 # Lier les données
@@ -1488,6 +1515,31 @@ Il faut ajouter `langue_id` dans la table utilisateur,
 qui pointe vers la valeur de la langue parlée
 
 ![](./images/one-to-many.png)
+
+## En pratique :
+
+Ajout du champ qui pointe vers la table `langue`
+
+```sql
+ALTER TABLE utilisateur
+ADD langue_id INT NULL;
+```
+
+Ajout de la *clé étrangère* qui matérialise ce lien
+
+```sql
+ALTER TABLE utilisateur
+ADD FOREIGN KEY (langue_id) REFERENCES langue (id)
+ON DELETE CASCADE;
+```
+
+## `ON DELETE`
+
+Ce mot clé décrit le comportement lors de la destruction d'une entité liée :
+
+- `RESTRICT` : on empêche la suppression via une erreur
+- `SET NULL` : on vide le champ / retire la liaison
+- `CASCADE` : on supprime les entités liées
 
 ## Récupérer les données
 
@@ -1531,8 +1583,11 @@ que les utilisateurs utilisent plusieurs aliments
 
 ## La table de liaison
 
+Pour ce type de lien on a besoin d'une *table de liaison*
 On la nomme en général `{table1}_{table2}`
 
 ![](./images/table-liaison.png)
 
-## En pratique
+## Mise en place
+
+## Récupérer les données
