@@ -11,6 +11,7 @@
   <?php include "content/answers-section.php" ?>
 </body>
 
-<?php include "content/question-form.php" ?>
+<?php include "forms/answer-form/answer-form.php" ?>
+<?php include "forms/question-form/question-form.php" ?>
 
 </html>
