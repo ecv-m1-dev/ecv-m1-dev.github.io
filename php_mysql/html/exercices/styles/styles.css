@@ -6,7 +6,7 @@ small {
     color: #333;
 }
 
-small > strong {
+small>strong {
     color: black;
 }
 
