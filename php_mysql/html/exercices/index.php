@@ -7,11 +7,10 @@
 </head>
 
 <body>
-  <?php include "content/header.php" ?>
   <?php include "content/question-section.php" ?>
   <?php include "content/answers-section.php" ?>
+  <?php include "content/question-form.php" ?>
 </body>
 
-<?php include "content/question-form.php" ?>
 
 </html>

@@ -1,5 +1,7 @@
 <?php
 
+$NUMBER_OF_QUESTIONS = 0;
+
 $title = 'TITRE DE LA QUESTION';
 
 $timestamp = 1700131242;
