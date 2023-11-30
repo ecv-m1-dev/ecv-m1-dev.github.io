@@ -20,10 +20,6 @@
   <strong>
     <?php global $author; echo $author ?>
   </strong>
-
-  <a href="/exercices/forms/question-form/question-form.php">
-    <button>Poser une autre question</button>
-  </a>
 </small>
 
 <section id="question">

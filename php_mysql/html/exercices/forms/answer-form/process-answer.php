@@ -12,17 +12,27 @@ if (empty($_POST["answer-title"]) || empty($_POST["answer"])) {
   exit();
 }
 
+if (!isset($_SESSION['answers'])) {
+  $_SESSION['answers'] = [];
+}
+
 // si on arrive ici c'est que c'est ok
-$_SESSION['answer-title'] = filter_var($_POST["answer-title"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$_SESSION['answer'] = filter_var($_POST["answer"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+$answer = [
+  "title" => filter_var($_POST["answer-title"], FILTER_SANITIZE_FULL_SPECIAL_CHARS), 
+  "content" => filter_var($_POST["answer"], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+];
+
+array_push($_SESSION['answers'], $answer)
+
 ?>
 
 <h1>Votre réponse : </h1>
 <h2>Titre : </h2>
-<span><?php echo $_SESSION['answer-title'] ?></span>
+<span><?php echo $answer['title'] ?></span>
 
 <h2>Contenu : </h2>
-<span><?php echo $_SESSION['answer'] ?></span>
+<span><?php echo $answer['content'] ?></span>
 
 <br />
 

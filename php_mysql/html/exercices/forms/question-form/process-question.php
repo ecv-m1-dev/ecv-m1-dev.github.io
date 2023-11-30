@@ -15,7 +15,7 @@ if (empty($_POST["title"]) || empty($_POST["question"])) {
 // si on arrive ici c'est que c'est ok
 $_SESSION['title'] = filter_var($_POST["title"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $_SESSION['question'] = filter_var($_POST["question"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$_SESSION['answer'] = [];
+$_SESSION['answers'] = [];
 ?>
 
 <h1>Votre question : </h1>
