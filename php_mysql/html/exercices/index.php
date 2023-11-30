@@ -1,18 +1,15 @@
-<html lang="fr"> <!-- La balise est avant les headers -->
+<?php
 
-<head>
-    <?php include 'variables.php' ?>
-    <link href="styles/styles.css" rel="stylesheet"/>
-</head>
+include_once ('models/Question.php');
+
+session_start(); ?>
+
+<html lang="fr">
 
 <body>
-
-<?php include './parts/question.php' ?>
-
-<hr />
-
-<?php include './parts/answers.php' ?>
-
+  <?php include "content/question-section.php" ?>
+  <?php include "content/answers-section.php" ?>
+  <?php include "content/forms/question-form.php" ?>
 </body>
 
 </html>
