@@ -10,14 +10,12 @@
         width: 400px;
     }
 </style>
-<?php include 'variables.php' ?>
 <div id="create-question">
     <form action="createQuestion.php" method="post">
         <label for="question">
             <h1> Nouvelle question :</h1>
         </label>
         <input type="text" id="question" name="question" placeholder="Ex: Comment arrêter de procrastiner ?">
-        <input type="text" name="id" value=<?= $NUMBER_OF_QUESTIONS ?> hidden />
         <input type="submit" value="add" />
     </form>
 </div>
