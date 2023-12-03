@@ -1464,7 +1464,7 @@ Il en existe beaucoup d'autres...
 
 # Modifier les tables
 
-## ALTER TABLE
+## `ALTER TABLE`
 
 Avec ces mots-clés, on peut  
 *modifier la structure des tables*
@@ -1511,25 +1511,25 @@ Les relations structurent la BDD
 ## Relation 1-to-many
 
 Exemple: Plusieurs utilisateur parlent la même langue  
-Il faut ajouter `langue_id` dans la table utilisateur,  
+Il faut ajouter `language_id` dans la table utilisateur,  
 qui pointe vers la valeur de la langue parlée
 
 ![](./images/one-to-many.png)
 
 ## En pratique :
 
-Ajout du champ qui pointe vers la table `langue`
+Ajout du champ qui pointe vers la table `language`
 
 ```sql
-ALTER TABLE utilisateur
-ADD langue_id INT NULL;
+ALTER TABLE user
+ADD language_id INT NULL;
 ```
 
 Ajout de la *clé étrangère* qui matérialise ce lien
 
 ```sql
-ALTER TABLE utilisateur
-ADD FOREIGN KEY (langue_id) REFERENCES langue (id)
+ALTER TABLE user
+ADD FOREIGN KEY (language_id) REFERENCES language (id)
 ON DELETE CASCADE;
 ```
 
@@ -1548,9 +1548,9 @@ pour indiquer qu'on souhaite lier les données
 
 ```sql
 SELECT * 
-FROM utilisateur
-JOIN langue
-ON utilisateur.langue_id = langue.id;
+FROM user
+JOIN language
+ON user.language_id = language.id;
 ```
 
 ##
@@ -1577,7 +1577,7 @@ Les deux dernières colonnes décrivent la `langue`
 ## Relation Many-to-many
 
 On peut imaginer vouloir faire en sorte  
-que les utilisateurs utilisent plusieurs aliments
+que les utilisateurs utilisent plusieurs entités
 
 ![](./images/many-to-many.png)
 
@@ -1590,4 +1590,36 @@ On la nomme en général `{table1}_{table2}`
 
 ## Mise en place
 
+On crée la table avec les liens correpondant  
+en utilisant des `FOREIGN_KEYS`
+
+```sql
+CREATE TABLE users_ingredients (
+  user_id INTEGER NOT NULL,
+  ingredient_id INTEGER NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  FOREIGN KEY (ingredient_id) REFERENCES ingredient (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  PRIMARY KEY (user_id, ingredient_id) -- assure l'unicité du couple de valeurs
+);
+    
+```
+
 ## Récupérer les données
+
+On doit utiliser 2 `JOIN` pour récupérer les données
+Ici par exemple on récupère tous les ingrédients utilisés par l'utilisateur `1`
+
+```sql
+SELECT *
+FROM  ingredient
+JOIN users_ingredients ON users_ingredients.ingredient_id = ingredient.id 
+JOIN user ON user.id = users_ingredients.user_id
+WHERE user.id = 11;
+```
+
+## Comment progresser ?
+
+- Commencer par des requêtes simple puis les complexifier
+- Utiliser [une cheatsheet](https://www.sqltutorial.org/wp-content/uploads/2016/04/SQL-cheat-sheet.pdf)
+- Bien lire les messages d'erreur
+- Pratiquer régulièrement

@@ -1745,7 +1745,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb84-1"><a href="#
 
 </section>
 <section id="alter-table" class="slide level2">
-<h2>ALTER TABLE</h2>
+<h2><code>ALTER TABLE</code></h2>
 <p>Avec ces mots-clés, on peut<br />
 <em>modifier la structure des tables</em></p>
 </section>
@@ -1786,20 +1786,21 @@ structurent la BDD</p>
 <section id="relation-1-to-many" class="slide level2">
 <h2>Relation 1-to-many</h2>
 <p>Exemple: Plusieurs utilisateur parlent la même langue<br />
-Il faut ajouter <code>langue_id</code> dans la table utilisateur,<br />
+Il faut ajouter <code>language_id</code> dans la table
+utilisateur,<br />
 qui pointe vers la valeur de la langue parlée</p>
 <p><img data-src="./images/one-to-many.png" /></p>
 </section>
 <section id="en-pratique" class="slide level2">
 <h2>En pratique :</h2>
-<p>Ajout du champ qui pointe vers la table <code>langue</code></p>
+<p>Ajout du champ qui pointe vers la table <code>language</code></p>
 <div class="sourceCode" id="cb86"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> utilisateur</span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> langue_id <span class="dt">INT</span> <span class="kw">NULL</span>;</span></code></pre></div>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> <span class="fu">user</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> language_id <span class="dt">INT</span> <span class="kw">NULL</span>;</span></code></pre></div>
 <p>Ajout de la <em>clé étrangère</em> qui matérialise ce lien</p>
 <div class="sourceCode" id="cb87"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> utilisateur</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (langue_id) <span class="kw">REFERENCES</span> langue (<span class="kw">id</span>)</span>
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> <span class="fu">user</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (language_id) <span class="kw">REFERENCES</span> language (<span class="kw">id</span>)</span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">CASCADE</span>;</span></code></pre></div>
 </section>
 <section id="on-delete" class="slide level2">
@@ -1819,9 +1820,9 @@ erreur</li>
 pour indiquer qu’on souhaite lier les données</p>
 <div class="sourceCode" id="cb88"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> utilisateur</span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> langue</span>
-<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> utilisateur.langue_id <span class="op">=</span> langue.<span class="kw">id</span>;</span></code></pre></div>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> <span class="fu">user</span></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> language</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> <span class="fu">user</span>.language_id <span class="op">=</span> language.<span class="kw">id</span>;</span></code></pre></div>
 </section>
 <section id="section-4" class="slide level2">
 <h2></h2>
@@ -1844,7 +1845,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb88-1"><a href="#
 <section id="relation-many-to-many" class="slide level2">
 <h2>Relation Many-to-many</h2>
 <p>On peut imaginer vouloir faire en sorte<br />
-que les utilisateurs utilisent plusieurs aliments</p>
+que les utilisateurs utilisent plusieurs entités</p>
 <p><img data-src="./images/many-to-many.png" /></p>
 </section>
 <section id="la-table-de-liaison" class="slide level2">
@@ -1855,9 +1856,40 @@ la nomme en général <code>{table1}_{table2}</code></p>
 </section>
 <section id="mise-en-place" class="slide level2">
 <h2>Mise en place</h2>
+<p>On crée la table avec les liens correpondant<br />
+en utilisant des <code>FOREIGN_KEYS</code></p>
+<div class="sourceCode" id="cb90"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> users_ingredients (</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  user_id <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  ingredient_id <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (user_id) <span class="kw">REFERENCES</span> <span class="fu">user</span> (<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">RESTRICT</span> <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span>,</span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (ingredient_id) <span class="kw">REFERENCES</span> ingredient (<span class="kw">id</span>) <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">RESTRICT</span> <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span>,</span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (user_id, ingredient_id) <span class="co">-- assure l&#39;unicité du couple de valeurs</span></span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a>    </span></code></pre></div>
 </section>
 <section id="récupérer-les-données-1" class="slide level2">
 <h2>Récupérer les données</h2>
+<p>On doit utiliser 2 <code>JOIN</code> pour récupérer les données Ici
+par exemple on récupère tous les ingrédients utilisés par l’utilisateur
+<code>1</code></p>
+<div class="sourceCode" id="cb91"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span>  ingredient</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> users_ingredients <span class="kw">ON</span> users_ingredients.ingredient_id <span class="op">=</span> ingredient.<span class="kw">id</span> </span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> <span class="fu">user</span> <span class="kw">ON</span> <span class="fu">user</span>.<span class="kw">id</span> <span class="op">=</span> users_ingredients.user_id</span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="fu">user</span>.<span class="kw">id</span> <span class="op">=</span> <span class="dv">11</span>;</span></code></pre></div>
+</section>
+<section id="comment-progresser" class="slide level2">
+<h2>Comment progresser ?</h2>
+<ul>
+<li>Commencer par des requêtes simple puis les complexifier</li>
+<li>Utiliser <a
+href="https://www.sqltutorial.org/wp-content/uploads/2016/04/SQL-cheat-sheet.pdf">une
+cheatsheet</a></li>
+<li>Bien lire les messages d’erreur</li>
+<li>Pratiquer régulièrement</li>
+</ul>
 </section></section>
     </div>
   </div>
