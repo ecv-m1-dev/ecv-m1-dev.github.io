@@ -1,33 +1,19 @@
-<?php
+<h1>La dernière question posée</h1>
+<section id="question-section">
+  <!-- start session -->
+  <?php if (!session_id()) session_start(); ?>
 
-  session_start();
-
-  $title = $_SESSION['title'] ?? "Aucun titre pour l'instant";
-  $question = $_SESSION['question'] ?? "Aucune question pour l'instant";
-
-?>
-
-<h1>
-  <?php global $title;
-  echo $title ?>
-</h1>
-
-<small>
-  question du
-  <strong>
-    <?php global $date;
-    echo $date ?>
-  </strong>
-  posée par
-  <strong>
-    <?php global $author; echo $author ?>
-  </strong>
-
-  <a href="/exercices/ask.php">
-    <button>Poser une autre question</button>
-  </a>
-</small>
-
-<section id="question">
-  <?php global $question; echo $question ?>
+  <?php if (empty($_SESSION["question"])): ?>
+    <small>Aucune question pour l\'instant</small>
+  <?php else: ?>
+  <h3><?php echo $_SESSION['title'] ?></h3>
+  <small>
+    le <strong><?php echo $_SESSION['date']->format('d/m/Y à H:i')  ?></strong>
+    par <strong><?php echo $_SESSION['author'] ?></strong>
+  </small>
+  <p><?php echo $_SESSION['question'] ?></p>
+  <?php endif; ?>
 </section>
+<?php if (!empty($_SESSION['question'])) require "parts/answers.php"; ?>
+
+<a href="ask.php"><button>Posez une nouvell question</button></a>

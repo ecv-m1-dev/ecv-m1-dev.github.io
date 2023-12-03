@@ -1,15 +1,11 @@
-<?php
-
-include_once ('models/Question.php');
-
-session_start(); ?>
-
 <html lang="fr">
 
+<head>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+
 <body>
-  <?php include "content/question-section.php" ?>
-  <?php include "content/answers-section.php" ?>
-  <?php include "content/forms/question-form.php" ?>
+<?php require "parts/question.php" ?>
 </body>
 
 </html>

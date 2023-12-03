@@ -1,14 +1,11 @@
-<html lang="fr"> <!-- La balise est avant les headers -->
+<html lang="fr">
 
 <head>
-    <?php include 'variables.php' ?>
-    <link href="styles/styles.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
-
-<?php include './parts/question_form.php' ?>
-
+<?php require "forms/question.php" ?>
 </body>
 
 </html>
