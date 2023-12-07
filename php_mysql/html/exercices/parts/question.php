@@ -1,7 +1,9 @@
 <?php
 require_once(dirname(__FILE__) . '/../models/Question.php');
 session_start();
-$question = $_SESSION["question"];
+if (array_key_exists('question', $_SESSION)) {
+  $question = $_SESSION["question"];
+}
 // echo "<pre>";
 // var_dump($question);
 // echo "</pre>";
