@@ -1,3 +1,5 @@
+<a href="login.php">Se connecter</a>
+
 <header>
     <h1>
         <?php global $title;
