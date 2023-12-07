@@ -1,3 +1,10 @@
+<?php
+
+$question = new Question();
+$question->setTitle("Mon super titre")->setDate('aujd');
+
+?>
+
 <h1>La dernière question posée</h1>
 <section id="question-section">
   <!-- start session -->
