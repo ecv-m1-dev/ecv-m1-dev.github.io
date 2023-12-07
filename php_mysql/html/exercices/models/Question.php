@@ -1,4 +1,5 @@
 <?php
+require_once 'Author.php';
 
 class Question
 {
@@ -44,8 +45,19 @@ class Question
 
     public function setContent($content)
     {
-        if (strlen($content) < 4) {
-            $this->content = $content;
+        if (strlen($content) < 10) {
+            throw new Exception('Contenu trop court.');
         }
+        return $this;
+    }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function setAuthor($author)
+    {
+
     }
 }
