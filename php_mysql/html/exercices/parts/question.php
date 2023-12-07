@@ -1,19 +1,25 @@
+<?php
+require_once(dirname(__FILE__) . '/../models/Question.php');
+session_start();
+$question = $_SESSION["question"];
+// echo "<pre>";
+// var_dump($question);
+// echo "</pre>";
+// die();
+?>
 <h1>La dernière question posée</h1>
 <section id="question-section">
-  <!-- start session -->
-  <?php if (!session_id()) session_start(); ?>
-
-  <?php if (empty($_SESSION["question"])) : ?>
-    <small>Aucune question pour l\'instant</small>
+  <?php if (empty($question)) : ?>
+    <small>Aucune question pour l'instant</small>
   <?php else : ?>
-    <h3><?php echo $_SESSION['title'] ?></h3>
+    <h3><?php echo $question->getTitle() ?></h3>
     <small>
-      le <strong><?php echo $_SESSION['date']->format('d/m/Y à H:i')  ?></strong>
-      par <strong><?php echo $_SESSION['author'] ?></strong>
+      le <strong><?php echo $question->getDate()  ?></strong>
+      par <strong><?php echo $question->getAuthor()->getName() ?></strong>
     </small>
-    <p><?php echo $_SESSION['question'] ?></p>
+    <p><?php echo $question->getContent() ?></p>
   <?php endif; ?>
 </section>
-<?php if (!empty($_SESSION['question'])) require "parts/answers.php"; ?>
+<?php if (!empty($question)) require "parts/answers.php"; ?>
 
-<a href="ask.php"><button>Posez une nouvell question</button></a>
+<a href="ask.php"><button>Posez une nouvelle question</button></a>

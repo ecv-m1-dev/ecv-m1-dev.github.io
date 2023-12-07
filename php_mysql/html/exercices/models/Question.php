@@ -48,8 +48,9 @@ class Question
     public function setContent($content)
     {
         if (strlen($content) < 10) {
-            throw new Exception('Contenu trop court.');
+            throw new Exception('Contenu trop court. Min 10 cars.');
         }
+        $this->content = $content;
         return $this;
     }
 
@@ -60,13 +61,18 @@ class Question
 
     public function setAuthor($author)
     {
-        if($author instanceof Author){
+        if ($author instanceof Author) {
             $this->author = $author;
-        } elseif(gettype($author) === "string") {
+        } elseif (gettype($author) === "string") {
             $this->author = new Author($author);
         } else {
             throw new Exception("Format d'auteur incorrect : " . gettype($author));
         }
         return $this;
+    }
+
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }
