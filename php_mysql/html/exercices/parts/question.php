@@ -1,7 +1,7 @@
 <?php
-
+require_once(dirname(__FILE__) . '/../models/Question.php');
 $question = new Question();
-$question->setTitle("Mon super titre")->setDate('aujd');
+$question->setTitle("Mon super titre")->setDate();
 
 ?>
 
@@ -10,15 +10,15 @@ $question->setTitle("Mon super titre")->setDate('aujd');
   <!-- start session -->
   <?php if (!session_id()) session_start(); ?>
 
-  <?php if (empty($_SESSION["question"])): ?>
+  <?php if (empty($_SESSION["question"])) : ?>
     <small>Aucune question pour l\'instant</small>
-  <?php else: ?>
-  <h3><?php echo $_SESSION['title'] ?></h3>
-  <small>
-    le <strong><?php echo $_SESSION['date']->format('d/m/Y à H:i')  ?></strong>
-    par <strong><?php echo $_SESSION['author'] ?></strong>
-  </small>
-  <p><?php echo $_SESSION['question'] ?></p>
+  <?php else : ?>
+    <h3><?php echo $_SESSION['title'] ?></h3>
+    <small>
+      le <strong><?php echo $_SESSION['date']->format('d/m/Y à H:i')  ?></strong>
+      par <strong><?php echo $_SESSION['author'] ?></strong>
+    </small>
+    <p><?php echo $_SESSION['question'] ?></p>
   <?php endif; ?>
 </section>
 <?php if (!empty($_SESSION['question'])) require "parts/answers.php"; ?>
