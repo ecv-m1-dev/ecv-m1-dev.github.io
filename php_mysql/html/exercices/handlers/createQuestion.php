@@ -1,4 +1,6 @@
 <?php
+require_once(dirname(__FILE__) . '/../models/Question.php');
+
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -12,10 +14,14 @@ if (empty($_POST["title"]) || empty($_POST["question"])) {
 }
 
 // si on arrive ici on peut enregistrer la question
-$_SESSION['title'] = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+/* $_SESSION['title'] = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $_SESSION['question'] = filter_var($_POST['question'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $_SESSION['author'] = filter_var($_POST['author'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$_SESSION['date'] = new DateTime(); // la date est un objet
+$_SESSION['date'] = new DateTime(); // la date est un objet */
+
+$question = new Question();
+var_dump($question);
+die();
 
 // on efface les réponses
 $_SESSION['answers'] = [];

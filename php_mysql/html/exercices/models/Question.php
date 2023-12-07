@@ -9,9 +9,11 @@ class Question
     private $date;
 
 
-    public function __construct($title = '')
+    public function __construct($title = null)
     {
-        $this->title = $title;
+        if (!empty($title)) {
+            $this->setTitle($title);
+        }
     }
 
     public function setTitle($newTitle)
@@ -58,6 +60,13 @@ class Question
 
     public function setAuthor($author)
     {
-
+        if($author instanceof Author){
+            $this->author = $author;
+        } elseif(gettype($author) === "string") {
+            $this->author = new Author($author);
+        } else {
+            throw new Exception("Format d'auteur incorrect : " . gettype($author));
+        }
+        return $this;
     }
 }

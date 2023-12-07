@@ -1,14 +1,3 @@
-<?php
-require_once(dirname(__FILE__) . '/../models/Question.php');
-require_once(dirname(__FILE__) . '/../models/Author.php');
-
-session_start();
-
-$question = new Question();
-$question->setTitle("Mon super titre")->setDate();
-$author = new Author('Clément');
-?>
-
 <h1>La dernière question posée</h1>
 <section id="question-section">
   <!-- start session -->
