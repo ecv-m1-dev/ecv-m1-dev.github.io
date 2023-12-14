@@ -13,8 +13,12 @@ services:
   mysql:
     image: mariadb
     restart: always
+    volumes:
+      - ./mysql-conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
     environment:
       MARIADB_ROOT_PASSWORD: mariadb_password
+    ports:
+      - "3306:3306"
 
   adminer:
     image: adminer
