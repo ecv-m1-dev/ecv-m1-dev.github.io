@@ -8,6 +8,9 @@ foreach ($migrations as $sqlFilePath) {
     if (pathinfo($sqlFilePath, PATHINFO_EXTENSION) !== "sql") {
         continue;
     }
+    if (pathinfo($sqlFilePath, PATHINFO_FILENAME) === "data") {
+        continue;
+    }
     $sqlScript = file_get_contents($sqlFilePath);
     var_dump($sqlScript);
     $sth = $dbh->prepare($sqlScript);
