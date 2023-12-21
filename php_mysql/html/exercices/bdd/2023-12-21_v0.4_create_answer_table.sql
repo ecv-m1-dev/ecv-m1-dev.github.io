@@ -1,3 +1,4 @@
+USE ecv_m1;
 CREATE TABLE answer
 (
     id      INTEGER      NOT NULL AUTO_INCREMENT PRIMARY KEY,

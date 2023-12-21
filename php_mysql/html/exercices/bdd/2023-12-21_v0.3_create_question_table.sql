@@ -1,3 +1,4 @@
+USE ecv_m1;
 CREATE TABLE question
 (
     id      INTEGER      NOT NULL AUTO_INCREMENT PRIMARY KEY,
