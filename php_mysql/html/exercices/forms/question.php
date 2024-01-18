@@ -1,9 +1,19 @@
+<?php
+require_once(dirname(__FILE__) . '/../models/Author.php');
+$authors = Author::getList();
+?>
+<!-- <pre><?= var_dump($authors) ?> </pre> -->
 <section id="question-form">
   <h1>Posez votre question ici !</h1>
   <form action="/exercices/handlers/createQuestion.php" method="post">
     <p>
       <label for="author">Votre nom ?</label><br />
-      <input type="text" id="author" name="author" required>
+      <select name="authors" id="authors">
+        <?php foreach ($authors as $author) :  ?>
+          <option value="<?= $author["id"] ?>"><?= $author["name"] ?></option>
+        <?php endforeach; ?>
+      </select>
+      <!-- <input type="text" id="author" name="author" required> -->
     </p>
 
     <p>

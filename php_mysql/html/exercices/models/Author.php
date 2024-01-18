@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/../config/db.php';
 
 class Author
 {
@@ -25,4 +26,12 @@ class Author
         return $this->name;
     }
 
+    public static function getList()
+    {
+        global $dsn, $db_user, $db_pass;
+        $dbh = new PDO($dsn, $db_user, $db_pass);
+        $stmt = $dbh->prepare("SELECT id, name FROM author");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

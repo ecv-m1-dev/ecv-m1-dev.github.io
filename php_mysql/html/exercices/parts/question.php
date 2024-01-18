@@ -4,11 +4,9 @@ session_start();
 if (array_key_exists('question', $_SESSION)) {
   $question = $_SESSION["question"];
 }
-// echo "<pre>";
-// var_dump($question);
-// echo "</pre>";
-// die();
+
 ?>
+
 <h1>La dernière question posée</h1>
 <section id="question-section">
   <?php if (empty($question)) : ?>

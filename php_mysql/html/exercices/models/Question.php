@@ -1,5 +1,6 @@
 <?php
 require_once 'Author.php';
+require_once dirname(__FILE__) . '/../config/db.php';
 
 class Question
 {
@@ -74,5 +75,9 @@ class Question
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    public function save(){
+        
     }
 }
