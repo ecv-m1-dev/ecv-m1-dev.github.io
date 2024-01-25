@@ -3,6 +3,7 @@ require_once dirname(__FILE__) . '/../config/db.php';
 
 class Author
 {
+    private $id;
     private $name;
 
     public function __construct($name = null)
@@ -30,8 +31,25 @@ class Author
     {
         global $dsn, $db_user, $db_pass;
         $dbh = new PDO($dsn, $db_user, $db_pass);
+
         $stmt = $dbh->prepare("SELECT id, name FROM author");
+
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    public static function get($author_id) {
+        global $dsn, $db_user, $db_pass;
+        $dbh = new PDO($dsn, $db_user, $db_pass);
+
+        try {
+            $stmt = $dbh->prepare("SELECT id, name FROM author WHERE id = :author_id");
+            $stmt->bindParam(':author_id', $author_id);
+
+            $stmt->execute();
+            return $stmt->fetchObject(__CLASS__);
+        } catch (PDOException $e) {
+            throw new Error($e);
+        }
     }
 }
