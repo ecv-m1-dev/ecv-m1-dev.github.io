@@ -4,6 +4,7 @@ require_once dirname(__FILE__) . '/../config/db.php';
 
 class Question
 {
+    static private $TABLE_NAME = 'question';
     private $title;
     private $author;
     private $content;
@@ -63,13 +64,13 @@ class Question
     public function setAuthor($author)
     {
         if ($author instanceof Author) {
-//            author is already an object
+            //            author is already an object
             $this->author = $author;
         } elseif (!is_nan(intval($author))) {
-//            an author_id is provided
+            //            an author_id is provided
             $this->author = Author::get($author);
         } elseif (gettype($author) === "string") {
-//            we create an author from string
+            //            we create an author from string
             $this->author = new Author($author);
         } else {
             throw new Exception("Format d'auteur incorrect : " . gettype($author));
@@ -84,5 +85,16 @@ class Question
 
     public function save()
     {
+        global $dsn, $db_user, $db_pass;
+        $dbh = new PDO($dsn, $db_user, $db_pass);
+
+        $stmt = $dbh->prepare("INSERT INTO self::TABLE_NAME (title, content, date, author_id) VALUES (:title, :content, :date, :author_id)");
+        $stmt->bindParam(':title', $this->title);
+        $stmt->bindParam(':content', $this->content);
+        $stmt->bindParam(':date', $this->date);
+        $stmt->bindParam(':author_id', $this->author->getId());
+
+
+        return $stmt->execute();
     }
 }

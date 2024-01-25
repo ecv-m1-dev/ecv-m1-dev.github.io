@@ -13,6 +13,11 @@ class Author
         }
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function setName($name)
     {
         if (strlen($name) < 2) {
@@ -38,7 +43,8 @@ class Author
         return $stmt->fetchAll();
     }
 
-    public static function get($author_id) {
+    public static function get($author_id)
+    {
         global $dsn, $db_user, $db_pass;
         $dbh = new PDO($dsn, $db_user, $db_pass);
 

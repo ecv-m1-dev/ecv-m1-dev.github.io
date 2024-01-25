@@ -15,14 +15,17 @@ if (empty($_POST["title"]) || empty($_POST["question"])) {
 
 // si on arrive ici on peut enregistrer la question
 $question = new Question();
-$question
+$result = $question
     ->setTitle(filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS))
     ->setDate()
     ->setAuthor(filter_var($_POST['author_id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS))
     ->setContent(filter_var($_POST['question'], FILTER_SANITIZE_FULL_SPECIAL_CHARS))
     ->save();
 
-$_SESSION["question"] = $question;
+if ($result === true) {
+}
+
+// $_SESSION["question"] = $question;
 // echo "<pre>";
 // var_dump($question);
 // echo "</pre>";
