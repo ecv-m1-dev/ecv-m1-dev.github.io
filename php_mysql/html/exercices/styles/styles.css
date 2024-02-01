@@ -21,3 +21,9 @@ section {
     border: solid 1px;
     padding: 10px
 }
+
+#question-section .question-article {
+    border: 1px solid black;
+    padding: 10px 20px;
+    margin: 16px 0;
+}

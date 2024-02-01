@@ -13,7 +13,6 @@ $authors = Author::getList();
           <option value="<?= $author["id"] ?>"><?= $author["name"] ?></option>
         <?php endforeach; ?>
       </select>
-      <!-- <input type="text" id="author" name="author" required> -->
     </p>
 
     <p>

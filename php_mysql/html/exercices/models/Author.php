@@ -5,12 +5,17 @@ class Author
 {
     private $id;
     private $name;
+    private $email;
 
     public function __construct($name = null)
     {
         if (!empty($name)) {
             $this->setName($name);
         }
+    }
+
+    public function setId($id) {
+        $this->id = $id;
     }
 
     public function getId()
@@ -32,6 +37,14 @@ class Author
         return $this->name;
     }
 
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
     public static function getList()
     {
         global $dsn, $db_user, $db_pass;
@@ -41,6 +54,10 @@ class Author
 
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    public function toString() {
+        return "(Author) id: '$this->id', name: '$this->name', email: '$this->email'";
     }
 
     public static function get($author_id)
