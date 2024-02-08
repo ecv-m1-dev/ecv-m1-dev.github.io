@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__) . '/../models/Answer.php');
 $answers = Answer::getList($_GET['question-id']);
+// var_dump($_GET["question-id"]);
 // var_dump($answers);
 // die;
 ?>
@@ -8,13 +9,13 @@ $answers = Answer::getList($_GET['question-id']);
 <section id="answers-section">
   <?php if (!session_id()) session_start(); ?>
 
-  <?php if (empty($_SESSION["answers"])) : ?>
+  <?php if (empty($answers)) : ?>
     <small>Aucune réponse pour l'instant</small>
 
   <?php else : ?>
-    <?php foreach ($_SESSION["answers"] as $answer) : ?>
+    <?php foreach ($answers as $answer) : ?>
       <article>
-        <p><?php echo $answer['answer'] ?></p>
+        <p><?php echo $answer['content'] ?></p>
         <small>
           De <strong><?php echo $answer['author'] ?></strong>
           le <strong><?php echo $answer['date']->format('d/m/Y à H:i') ?></strong>

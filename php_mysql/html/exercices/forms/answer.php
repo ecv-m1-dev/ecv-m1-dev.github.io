@@ -14,9 +14,10 @@ $authors = Author::getList();
   </p>
 
   <p>
-    <label for="answer">Votre réponse : </label><br />
-    <textarea id="answer" cols="25" rows="6" name="answer" required></textarea>
+    <label for="content">Votre réponse : </label><br />
+    <textarea id="content" cols="25" rows="6" name="content" required></textarea>
   </p>
+  <input type="text" name="question_id" value="<?= $_GET["question-id"]?>" hidden>
   <br />
   <button type="submit">Envoyer</button>
 </form>

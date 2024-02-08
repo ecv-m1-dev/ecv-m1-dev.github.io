@@ -20,8 +20,6 @@ $result = $answer
   ->setQuestion(filter_var($_POST['question_id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS))
   ->save();
 
-if ($result === true) {
-}
 
 // redirige vers la page principale
 header("Location: /exercices/index.php");

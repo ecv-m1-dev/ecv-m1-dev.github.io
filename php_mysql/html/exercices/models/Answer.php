@@ -1,9 +1,12 @@
 <?php
 require_once dirname(__FILE__) . '/../config/db.php';
 require_once 'HasAuthor.php';
+require_once 'Question.php';
 class Answer extends HasAuthor
 {
+    static private $TABLE_NAME = 'answer';
     private $content;
+    private $question;
     private $date;
 
 
@@ -40,12 +43,46 @@ class Answer extends HasAuthor
         return $this->content;
     }
 
+    public function setQuestion($question)
+    {
+        if ($question instanceof question) {
+            //            question is already an object
+            $this->question = $question;
+        } elseif (!is_nan(intval($question))) {
+            //            an question_id is provided
+            $this->question = Question::get($question);
+        } elseif (gettype($question) === "string") {
+            //            we create an question from string
+            $this->question = new Question($question);
+        } else {
+            throw new Exception("Format de question incorrect : " . gettype($question));
+        }
+        return $this;
+    }
+
+    public function save()
+    {
+        global $dsn, $db_user, $db_pass;
+        $dbh = new PDO($dsn, $db_user, $db_pass);
+        $timestamp = $this->date->format('Y-m-d H:i:s');
+        $authorId = $this->author->getId();
+        $questionId = $this->question->getId();
+
+        $stmt = $dbh->prepare("INSERT INTO " . self::$TABLE_NAME . " (content, date, author_id, question_id) VALUES (:content, :date, :author_id, :question_id)");
+        $stmt->bindParam(':content', $this->content);
+        $stmt->bindParam(':date', $timestamp);
+        $stmt->bindParam(':author_id', $authorId);
+        $stmt->bindParam(':question_id', $questionId);
+
+        return $stmt->execute();
+    }
+
     public static function getList(int $question_id)
     {
         global $dsn, $db_user, $db_pass;
         $dbh = new PDO($dsn, $db_user, $db_pass);
 
-        $stmt = $dbh->prepare("SELECT id, content, date FROM answer WHERE question_id = :question_id");
+        $stmt = $dbh->prepare("SELECT id, content, author_id date FROM answer WHERE question_id = :question_id");
         $stmt->bindParam(":question_id", $question_id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
