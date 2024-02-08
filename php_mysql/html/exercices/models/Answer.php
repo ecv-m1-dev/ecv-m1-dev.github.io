@@ -8,10 +8,21 @@ class Answer extends HasAuthor
     private $content;
     private $question;
     private $date;
+    private $id;
 
 
     public function __construct()
     {
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function setDate($date = 'now')
@@ -82,9 +93,28 @@ class Answer extends HasAuthor
         global $dsn, $db_user, $db_pass;
         $dbh = new PDO($dsn, $db_user, $db_pass);
 
-        $stmt = $dbh->prepare("SELECT id, content, author_id date FROM answer WHERE question_id = :question_id");
+        $stmt = $dbh->prepare("SELECT answer.id, content, author_id, name, email, date FROM answer INNER JOIN author ON answer.author_id = author.id WHERE question_id = :question_id");
         $stmt->bindParam(":question_id", $question_id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll();
+        $resultArray = $stmt->fetchAll();
+        return array_map(function ($item) {
+            return self::formatAnswer($item);
+        }, $resultArray);
+    }
+
+    public static function formatAnswer($item)
+    {
+        $author = new Author();
+        $author->setName($item['name']);
+        $author->setId($item['author_id']);
+        $author->setEmail($item['email']);
+
+        $answer = new Answer();
+        $answer->setId($item['id']);
+        $answer->setAuthor($author);
+        $answer->setDate($item['date']);
+        $answer->setContent($item['content']);
+
+        return $answer;
     }
 }

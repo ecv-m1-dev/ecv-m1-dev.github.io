@@ -15,10 +15,10 @@ $answers = Answer::getList($_GET['question-id']);
   <?php else : ?>
     <?php foreach ($answers as $answer) : ?>
       <article>
-        <p><?php echo $answer['content'] ?></p>
+        <p><?php echo $answer->getContent() ?></p>
         <small>
-          De <strong><?php echo $answer['author'] ?></strong>
-          le <strong><?php echo $answer['date']->format('d/m/Y à H:i') ?></strong>
+          De <strong><?php echo $answer->getAuthor()->getName() ?></strong>
+          le <strong><?php echo $answer->getDate() ?></strong>
         </small>
       </article>
     <?php endforeach ?>

@@ -5,7 +5,7 @@
 </head>
 
 <body>
-<?php require "parts/questionDetailed.php" ?>
+    <?php require_once "parts/questionDetailed.php" ?>
 </body>
 
 </html>
