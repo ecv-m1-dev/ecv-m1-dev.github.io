@@ -1,12 +1,18 @@
+<?php
+require_once(dirname(__FILE__) . '/../models/Answer.php');
+$answers = Answer::getList($_GET['question-id']);
+// var_dump($answers);
+// die;
+?>
 <h2>Les réponses</h2>
 <section id="answers-section">
   <?php if (!session_id()) session_start(); ?>
 
-  <?php if (empty($_SESSION["answers"])): ?>
+  <?php if (empty($_SESSION["answers"])) : ?>
     <small>Aucune réponse pour l'instant</small>
 
-  <?php else: ?>
-    <?php foreach($_SESSION["answers"] as $answer) : ?>
+  <?php else : ?>
+    <?php foreach ($_SESSION["answers"] as $answer) : ?>
       <article>
         <p><?php echo $answer['answer'] ?></p>
         <small>
@@ -21,4 +27,3 @@
 <section>
   <?php require "forms/answer.php"; ?>
 </section>
-

@@ -1,13 +1,11 @@
 <?php
-require_once 'Author.php';
 require_once dirname(__FILE__) . '/../config/db.php';
-
-class Question
+require_once 'HasAuthor.php';
+class Question extends HasAuthor
 {
     static private $TABLE_NAME = 'question';
     private $id;
     private $title;
-    private $author;
     private $content;
     private DateTime $date;
 
@@ -70,28 +68,6 @@ class Question
     public function getContent()
     {
         return $this->content;
-    }
-
-    public function setAuthor($author)
-    {
-        if ($author instanceof Author) {
-            //            author is already an object
-            $this->author = $author;
-        } elseif (!is_nan(intval($author))) {
-            //            an author_id is provided
-            $this->author = Author::get($author);
-        } elseif (gettype($author) === "string") {
-            //            we create an author from string
-            $this->author = new Author($author);
-        } else {
-            throw new Exception("Format d'auteur incorrect : " . gettype($author));
-        }
-        return $this;
-    }
-
-    public function getAuthor()
-    {
-        return $this->author;
     }
 
     public function save()

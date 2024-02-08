@@ -1,8 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . '/../models/Question.php');
 
-session_start();
-
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     echo 'Il faut envoyer des données en POST';
     exit();

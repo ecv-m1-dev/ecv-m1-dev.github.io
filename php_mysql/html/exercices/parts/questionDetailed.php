@@ -13,6 +13,4 @@ $question = Question::get($questionId);
 <p><?php echo $question->getContent() ?></p>
 
 
-<?php /*if (!empty($question)) require "parts/answers.php"; */?><!--
-
--->
+<?php if (!empty($question)) require "parts/answers.php"; ?>

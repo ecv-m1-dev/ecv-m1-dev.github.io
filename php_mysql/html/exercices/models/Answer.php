@@ -1,9 +1,8 @@
 <?php
-require_once 'Author.php';
-
-class Answer
+require_once dirname(__FILE__) . '/../config/db.php';
+require_once 'HasAuthor.php';
+class Answer extends HasAuthor
 {
-    private $author;
     private $content;
     private $date;
 
@@ -41,20 +40,14 @@ class Answer
         return $this->content;
     }
 
-    public function setAuthor($author)
+    public static function getList(int $question_id)
     {
-        if ($author instanceof Author) {
-            $this->author = $author;
-        } elseif (gettype($author) === "string") {
-            $this->author = new Author($author);
-        } else {
-            throw new Exception("Format d'auteur incorrect : " . gettype($author));
-        }
-        return $this;
-    }
+        global $dsn, $db_user, $db_pass;
+        $dbh = new PDO($dsn, $db_user, $db_pass);
 
-    public function getAuthor()
-    {
-        return $this->author;
+        $stmt = $dbh->prepare("SELECT id, content, date FROM answer WHERE question_id = :question_id");
+        $stmt->bindParam(":question_id", $question_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }
